@@ -77,7 +77,16 @@ const AccountForm: React.FC<AccountFormProps> = ({
       ))}
 
       {/* Contacts Section */}
-      <h5>Contact Details</h5>
+      <h5>
+        Contact Details{" "}
+        <button
+          type="button"
+          className="btn btn-success ms-2"
+          onClick={() => handleAddContact()}
+        >
+          +
+        </button>
+      </h5>
       {formData.contacts.map((contact: any, index: number) => (
         <div key={index}>
           {/* Dropdown for Contact Type */}
@@ -115,13 +124,6 @@ const AccountForm: React.FC<AccountFormProps> = ({
               />
             </div>
           ))}
-          <button
-            type="button"
-            className="btn btn-success ms-2"
-            onClick={() => handleAddContact()}
-          >
-            +
-          </button>
         </div>
       ))}
     </form>
