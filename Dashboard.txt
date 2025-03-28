@@ -1,0 +1,73 @@
+Order Management
+	-Add 					done (26/03/2025)
+	-Update					done (27/03/2025)
+	-Delete					done (26/03/2025)
+	-Delete Confirmation			done (27/03/2025)
+	-Form Clear When Added			done (27/03/2025)
+	-Display 				done (26/03/2025)
+	-Pagination	
+	-Find
+	-Export to csv or excel or pdf
+	-View Order
+	-Edit Validation
+	-Add Validation 
+Product Management
+	-Add					done (26/03/2025)
+	-Update					done (27/03/2025)
+	-Delete					done (26/03/2025)
+	-Delete Confirmation			done (27/03/2025)
+	-Form Clear When Added			done (27/03/2025)
+	-Display 				done (27/03/2025)
+	-Add Category ID and Bind
+	-Pagination
+	-Find
+	-Export to csv or excel or pdf
+	-View Product
+	-Edit Validation
+	-Add Validation 	
+Account
+	-Form
+	-Add
+	-Update
+	-Delete
+	-Delete Confirmation
+	-Form Clear When Added
+	-Display 
+	-Pagination
+	-Find
+	-Export to csv or excel or pdf
+	-View Customers
+	-Edit Validation
+	-Add Validation 
+	
+Category
+	-Form{
+		-Category ID
+		-Category name			done (28/03/2025)
+		-Category Description
+		-Status}
+	-Add 					done (28/03/2025)
+	-Update					done (28/03/2025)
+	-Delete					done (28/03/2025)
+	-Display				done (28/03/2025)
+	-Delete Confirmation			done (28/03/2025)
+	-Form clear when adding new category	done (28/03/2025)
+
+
+Account json
+id:""
+code:""
+name:""
+address:{
+	type:"".
+	address:""
+	city:""
+	state:""
+	country:""
+}
+contacts:[
+{
+	contactType:"",
+	contactPerson:""
+	contactDetail:"",
+}]

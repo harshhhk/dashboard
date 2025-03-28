@@ -1,0 +1,187 @@
+{
+  "dashboard": {
+    "total_sales": 250000,
+    "total_orders": 4825,
+    "total_customers": 1820,
+    "revenue_growth": "18.4%",
+    "active_users": 540,
+    "new_signups": 75,
+    "refunds_issued": 320
+  },
+  "orders": [
+    {
+      "order_id": 2001,
+      "customer_name": "Alice Johnson",
+      "product": "Laptop",
+      "amount": 1250,
+      "status": "Shipped",
+      "order_date": "2025-03-15"
+    },
+    {
+      "order_id": 2002,
+      "customer_name": "Bob Smith",
+      "product": "Tablet",
+      "amount": 500,
+      "status": "Processing",
+      "order_date": "2025-03-14"
+    },
+    {
+      "order_id": 2003,
+      "customer_name": "Carol Davis",
+      "product": "Smartphone",
+      "amount": 899,
+      "status": "Delivered",
+      "order_date": "2025-03-13"
+    },
+    {
+      "order_id": 2004,
+      "customer_name": "David Brown",
+      "product": "Printer",
+      "amount": 250,
+      "status": "Cancelled",
+      "order_date": "2025-03-12"
+    },
+    {
+      "order_id": 2005,
+      "customer_name": "Emma Wilson",
+      "product": "Monitor",
+      "amount": 300,
+      "status": "Shipped",
+      "order_date": "2025-03-11"
+    },
+    {
+      "order_id": 2006,
+      "customer_name": "Frank Miller",
+      "product": "Keyboard",
+      "amount": 75,
+      "status": "Delivered",
+      "order_date": "2025-03-10"
+    },
+    {
+      "order_id": 2007,
+      "customer_name": "Grace Lee",
+      "product": "Mouse",
+      "amount": 40,
+      "status": "Processing",
+      "order_date": "2025-03-09"
+    }
+  ],
+  "customers": [
+    {
+      "customer_id": 101,
+      "customer_name": "Alice Johnson",
+      "email": "alice.johnson@example.com",
+      "phone": "123-456-7890",
+      "orders_placed": 7,
+      "total_spent": 8500
+    },
+    {
+      "customer_id": 102,
+      "customer_name": "Bob Smith",
+      "email": "bob.smith@example.com",
+      "phone": "987-654-3210",
+      "orders_placed": 4,
+      "total_spent": 2450
+    },
+    {
+      "customer_id": 103,
+      "customer_name": "Carol Davis",
+      "email": "carol.davis@example.com",
+      "phone": "555-123-4567",
+      "orders_placed": 9,
+      "total_spent": 6700
+    },
+    {
+      "customer_id": 104,
+      "customer_name": "David Brown",
+      "email": "david.brown@example.com",
+      "phone": "111-222-3333",
+      "orders_placed": 2,
+      "total_spent": 500
+    },
+    {
+      "customer_id": 105,
+      "customer_name": "Emma Wilson",
+      "email": "emma.wilson@example.com",
+      "phone": "444-555-6666",
+      "orders_placed": 5,
+      "total_spent": 1500
+    },
+    {
+      "customer_id": 106,
+      "customer_name": "Frank Miller",
+      "email": "frank.miller@example.com",
+      "phone": "222-333-4444",
+      "orders_placed": 3,
+      "total_spent": 1000
+    },
+    {
+      "customer_id": 107,
+      "customer_name": "Grace Lee",
+      "email": "grace.lee@example.com",
+      "phone": "666-777-8888",
+      "orders_placed": 6,
+      "total_spent": 2100
+    }
+  ],
+  "reports": [
+    {
+      "report_id": 301,
+      "title": "Monthly Sales Report",
+      "generated_on": "2025-03-01",
+      "status": "Completed",
+      "download_link": "/reports/monthly_sales_report.pdf"
+    },
+    {
+      "report_id": 302,
+      "title": "Customer Feedback Analysis",
+      "generated_on": "2025-02-25",
+      "status": "In Progress",
+      "download_link": ""
+    },
+    {
+      "report_id": 303,
+      "title": "Product Return Statistics",
+      "generated_on": "2025-02-15",
+      "status": "Completed",
+      "download_link": "/reports/product_return_statistics.pdf"
+    },
+    {
+      "report_id": 304,
+      "title": "Yearly Revenue Summary",
+      "generated_on": "2025-01-10",
+      "status": "Pending",
+      "download_link": ""
+    }
+  ],
+  "integrations": [
+    {
+      "integration_id": 401,
+      "name": "Stripe",
+      "status": "Connected",
+      "last_synced": "2025-03-15",
+      "sync_frequency": "Daily"
+    },
+    {
+      "integration_id": 402,
+      "name": "Shopify",
+      "status": "Connected",
+      "last_synced": "2025-03-12",
+      "sync_frequency": "Weekly"
+    },
+    {
+      "integration_id": 403,
+      "name": "Google Analytics",
+      "status": "Disconnected",
+      "last_synced": "2025-02-20",
+      "sync_frequency": "Monthly"
+    },
+    {
+      "integration_id": 404,
+      "name": "Mailchimp",
+      "status": "Connected",
+      "last_synced": "2025-03-10",
+      "sync_frequency": "Daily"
+    }
+  ]
+}
