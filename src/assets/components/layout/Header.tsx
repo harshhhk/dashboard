@@ -1,4 +1,8 @@
 import { Link } from "react-router-dom";
+// interface HeaderProps {
+//   searchValue: string;
+//   onSearchChange: (value: string) => void;
+// }  
 const Header = () => {
   return (
     <header className="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
@@ -21,6 +25,8 @@ const Header = () => {
         type="text"
         placeholder="Search"
         aria-label="Search"
+        // value={searchValue}
+        // onChange={(e) => onSearchChange(e.target.value)}
       />
       <div className="navbar-nav">
         <div className="nav-item text-nowrap">

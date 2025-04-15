@@ -22,6 +22,34 @@ const OutletHeader = (props: any) => {
               >
                 Add
               </button>
+              <div className="btn-group">
+                <button
+                  type="button"
+                  className="btn btn-sm btn-outline-secondary dropdown-toggle"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <span data-feather="download"></span> Export
+                </button>
+                <ul className="dropdown-menu">
+                  <li>
+                    <button
+                      className="dropdown-item"
+                      onClick={props.onExportPdf}
+                    >
+                      Export to PDF
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      className="dropdown-item"
+                      onClick={props.onExportCsv}
+                    >
+                      Export to CSV
+                    </button>
+                  </li>
+                </ul>
+              </div>  
 
               {/* <button
                 type="button"

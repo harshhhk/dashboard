@@ -1,7 +1,12 @@
 import Modal from "../layout/Modal";
 import OutletHeader from "../layout/OutletHeader";
 import { useState } from "react";
-import OrderForm from "./OrderForm";
+import OrderForm from "../Forms/OrderForm";
+import ViewModal from "../layout/ViewModal";
+import exportToPdf from "../export/exportToPdf";
+import exportToCsv from "../export/exportToCsv";
+// import { useOutletContext } from "react-router-dom";
+
 interface Orders {
   order_id: string;
   customer_name: string;
@@ -14,7 +19,24 @@ const Orders: React.FC = () => {
   const [modalTitle, setModalTitle] = useState<string>("");
   const [orders, setOrders] = useState<Orders[]>([]);
   const [editIndex, setEditIndex] = useState<number | null>(null);
+  const [viewModalData, setViewModalData] = useState<Orders | null>(null);
+  const headers = [
+    "Order ID",
+    "Customer",
+    "Product",
+    "Amount",
+    "Status",
+    "Date",
+  ];
 
+  const data = orders.map((o) => [
+    o.order_id,
+    o.customer_name,
+    o.product,
+    o.amount,
+    o.status,
+    o.order_date,
+  ]);
   const [formData, setFormData] = useState({
     order_id: "",
     customer_name: "",
@@ -42,6 +64,16 @@ const Orders: React.FC = () => {
     modalInstance.show();
   };
 
+//using useOutletContext
+  // const { searchTerm } = useOutletContext<{ searchTerm: string }>();
+
+  // const filteredOrders = orders.filter((order) =>
+  //   Object.values(order).some((val) =>
+  //     val.toLowerCase().includes(searchTerm.toLowerCase())
+  //   )
+  // );
+
+
   //  Add or Update order logic
   const handleSubmit = () => {
     if (editIndex !== null) {
@@ -53,6 +85,17 @@ const Orders: React.FC = () => {
       // Add new order
       setOrders([...orders, formData]);
     }
+  };
+
+  const handleView = (index: number) => {
+    setViewModalData(orders[index]);
+    const viewModalElement = document.getElementById(
+      "viewModal"
+    ) as HTMLElement;
+    const viewModalInstance = new (window as any).bootstrap.Modal(
+      viewModalElement
+    );
+    viewModalInstance.show();
   };
 
   const handleDelete = (index: number) => {
@@ -78,12 +121,22 @@ const Orders: React.FC = () => {
     setModalTitle("Add Order");
     setEditIndex(null);
   };
+  const handleExportPdf = () => {
+    exportToPdf("Order Report", headers, data, "orders.pdf");
+  };
+
+  // Export to CSV handler
+  const handleExportCsv = () => {
+    exportToCsv(headers, data, "orders.csv");
+  };
   return (
     <>
       <OutletHeader
         header={"Order"}
         showButton={true}
         onAddClick={handleAddClick}
+        onExportPdf={handleExportPdf}
+        onExportCsv={handleExportCsv}
       ></OutletHeader>
       <div className="table-responsive">
         <table className="table table-striped table-sm">
@@ -122,6 +175,13 @@ const Orders: React.FC = () => {
                   >
                     Delete
                   </button>
+                  <button
+                    type="button"
+                    className="btn btn-success"
+                    onClick={() => handleView(index)}
+                  >
+                    View
+                  </button>
                 </td>
               </tr>
             ))}
@@ -136,7 +196,13 @@ const Orders: React.FC = () => {
         component={
           <OrderForm formData={formData} handleChange={handleChange} />
         }
-      ></Modal> 
+      ></Modal>
+      {/* View Modal */}
+      <ViewModal
+        data={viewModalData}
+        modalId="viewModal"
+        title="View Order Details"
+      />
     </>
   );
 };

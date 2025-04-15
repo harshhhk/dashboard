@@ -6,12 +6,14 @@ interface AccountFormProps {
     index?: number
   ) => void;
   handleAddContact: () => void;
+  handleRemoveContact: (index: number) => void;
 }
 
 const AccountForm: React.FC<AccountFormProps> = ({
   formData,
   handleChange,
   handleAddContact,
+  handleRemoveContact,
 }) => {
   return (
     <form>
@@ -22,11 +24,9 @@ const AccountForm: React.FC<AccountFormProps> = ({
         { id: "name", label: "Name" },
       ].map((field) => (
         <div className="mb-3" key={field.id}>
-          <label htmlFor={field.id} className="col-form-label">
-            {field.label}:
-          </label>
           <input
             type="text"
+            placeholder={field.label}
             className="form-control"
             id={field.id}
             value={formData[field.id]}
@@ -34,22 +34,19 @@ const AccountForm: React.FC<AccountFormProps> = ({
           />
         </div>
       ))}
-
+      <label></label>
       {/* Address Section */}
-      <h5>Address</h5>
+      <h5>Address Detail:</h5>
 
       {/* Dropdown for Address Type */}
       <div className="mb-3">
-        <label htmlFor="type" className="col-form-label">
-          Type:
-        </label>
         <select
           className="form-control"
           id="type"
           value={formData.address.type}
           onChange={(e) => handleChange(e, "address")}
         >
-          <option value="">Select Type</option>
+          <option value="">Select Address Type</option>
           <option value="Home">Home</option>
           <option value="Office">Office</option>
         </select>
@@ -63,37 +60,24 @@ const AccountForm: React.FC<AccountFormProps> = ({
         { id: "country", label: "Country" },
       ].map((field) => (
         <div className="mb-3" key={field.id}>
-          <label htmlFor={field.id} className="col-form-label">
-            {field.label}:
-          </label>
           <input
             type="text"
             className="form-control"
+            placeholder={field.label}
             id={field.id}
             value={formData.address[field.id]}
             onChange={(e) => handleChange(e, "address")}
           />
         </div>
       ))}
-
+      <label></label>
       {/* Contacts Section */}
-      <h5>
-        Contact Details{" "}
-        <button
-          type="button"
-          className="btn btn-success ms-2"
-          onClick={() => handleAddContact()}
-        >
-          +
-        </button>
-      </h5>
+      <h5>Contact Details:</h5>
+
       {formData.contacts.map((contact: any, index: number) => (
         <div key={index}>
           {/* Dropdown for Contact Type */}
           <div className="mb-3">
-            <label htmlFor="contactType" className="col-form-label">
-              Contact Type:
-            </label>
             <select
               className="form-control"
               id="contactType"
@@ -112,18 +96,34 @@ const AccountForm: React.FC<AccountFormProps> = ({
             { id: "contactDetail", label: "Contact Detail" },
           ].map((field) => (
             <div className="mb-3" key={field.id}>
-              <label htmlFor={field.id} className="col-form-label">
-                {field.label}:
-              </label>
               <input
                 type="text"
                 className="form-control"
+                placeholder={field.label}
                 id={field.id}
                 value={contact[field.id]}
                 onChange={(e) => handleChange(e, "contacts", index)}
               />
             </div>
           ))}
+
+          {index === formData.contacts.length - 1 ? (
+            <button
+              type="button"
+              className="btn btn-success me-2"
+              onClick={() => handleAddContact()}
+            >
+              +
+            </button>
+          ) : (
+            <button
+              type="button"
+              className="btn btn-danger"
+              onClick={() => handleRemoveContact(index)}
+            >
+              -
+            </button>
+          )}
         </div>
       ))}
     </form>

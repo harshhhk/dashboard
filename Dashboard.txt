@@ -1,4 +1,4 @@
-Order Management
+Order 
 	-Add 					done (26/03/2025)
 	-Update					done (27/03/2025)
 	-Delete					done (26/03/2025)
@@ -11,7 +11,7 @@ Order Management
 	-View Order
 	-Edit Validation
 	-Add Validation 
-Product Management
+Product 
 	-Add					done (26/03/2025)
 	-Update					done (27/03/2025)
 	-Delete					done (26/03/2025)
@@ -25,20 +25,6 @@ Product Management
 	-View Product
 	-Edit Validation
 	-Add Validation 	
-Account
-	-Form
-	-Add
-	-Update
-	-Delete
-	-Delete Confirmation
-	-Form Clear When Added
-	-Display 
-	-Pagination
-	-Find
-	-Export to csv or excel or pdf
-	-View Customers
-	-Edit Validation
-	-Add Validation 
 	
 Category
 	-Form{
@@ -52,10 +38,34 @@ Category
 	-Display				done (28/03/2025)
 	-Delete Confirmation			done (28/03/2025)
 	-Form clear when adding new category	done (28/03/2025)
+	-Pagination
+	-Find
+	-Export to csv or excel or pdf
+	-View Customers
+	-Edit Validation
+	-Add Validation 
+
+Account 
+	-Form					done (28/03/2025)
+	-Add					done (28/03/2025)
+	-Update					done (28/03/2025)
+	-Delete					done (28/03/2025)
+	-Delete Confirmation			done (28/03/2025)
+	-Form Clear When Added			done (28/03/2025)
+	-Display 				done (28/03/2025)
+	-Multiple Contact 			done (28/03/2025)	
+	-Form Styling
+	-Pagination	
+	-Find
+	-Export to csv or excel or pdf
+	-View Customers
+	-Edit Validation
+	-Add Validation 
 
 
-Account json
-id:""
+
+			
+{id:""
 code:""
 name:""
 address:{
@@ -71,3 +81,4 @@ contacts:[
 	contactPerson:""
 	contactDetail:"",
 }]
+}

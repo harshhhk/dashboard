@@ -1,7 +1,8 @@
 import OutletHeader from "../layout/OutletHeader";
 import { useState } from "react";
 import Modal from "../layout/Modal";
-import CategoryForm from "./CategoryForm";
+import CategoryForm from "../Forms/CategoryForm";
+import ViewModal from "../layout/ViewModal";
 interface Categories {
   category_id: string;
   category_name: string;
@@ -12,6 +13,7 @@ const Categories = () => {
   const [modalTitle, setModalTitle] = useState<string>("");
   const [categories, setCategories] = useState<Categories[]>([]);
   const [editIndex, setEditIndex] = useState<number | null>(null);
+  const [viewModalData, setViewModalData] = useState<Categories | null>(null);
 
   const [formData, setFormData] = useState({
     category_id: "",
@@ -72,6 +74,16 @@ const Categories = () => {
     setModalTitle("Add Category");
     setEditIndex(null);
   };
+  const handleView = (index: number) => {
+    setViewModalData(categories[index]);
+    const viewModalElement = document.getElementById(
+      "viewModal"
+    ) as HTMLElement;
+    const viewModalInstance = new (window as any).bootstrap.Modal(
+      viewModalElement
+    );
+    viewModalInstance.show();
+  };
 
   return (
     <>
@@ -115,6 +127,13 @@ const Categories = () => {
                   >
                     Delete
                   </button>
+                  <button
+                    type="button"
+                    className="btn btn-success"
+                    onClick={() => handleView(index)}
+                  >
+                    View
+                  </button>
                 </td>
               </tr>
             ))}
@@ -130,6 +149,11 @@ const Categories = () => {
           <CategoryForm formData={formData} handleChange={handleChange} />
         }
       ></Modal>
+      <ViewModal
+        data={viewModalData}
+        modalId="viewModal"
+        title="View Order Details"
+      />
     </>
   );
 };

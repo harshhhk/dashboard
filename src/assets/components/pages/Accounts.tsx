@@ -1,7 +1,10 @@
 import OutletHeader from "../layout/OutletHeader";
 import { useState } from "react";
 import Modal from "../layout/Modal";
-import AccountForm from "./AccountForm";
+import AccountForm from "../Forms/AccountForm";
+import ViewModal from "../layout/ViewModal";
+import exportToCsv from "../export/exportToCsv";
+import exportToPdf from "../export/exportToPdf";
 
 interface Address {
   type: string;
@@ -30,6 +33,7 @@ const Accounts = () => {
   const [accounts, setAccounts] = useState<Account[]>([]);
   const [editIndex, setEditIndex] = useState<number | null>(null);
   const [contactCount, setContactCount] = useState<number>(0);
+  const [viewModalData, setViewModalData] = useState<Account | null>(null);
   const [formData, setFormData] = useState<Account>({
     id: "",
     code: "",
@@ -49,7 +53,34 @@ const Accounts = () => {
       },
     ],
   });
-
+  const headers = [
+    "Account ID",
+    "Account Code",
+    "Account Name",
+    "Address Type",
+    "Address",
+    "City",
+    "State",
+    "Country",
+    "Contact type",
+    "Contact Person",
+    "Contact Detail",
+  ];
+  const data = accounts.flatMap((a) =>
+    a.contacts.map((c) => [
+      a.id,
+      a.code,
+      a.name,
+      a.address.type,
+      a.address.address,
+      a.address.city,
+      a.address.state,
+      a.address.country,
+      c.contactType,
+      c.contactPerson,
+      c.contactDetail,
+    ])
+  );
   // ✅ Handle input changes
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
@@ -147,12 +178,43 @@ const Accounts = () => {
     setEditIndex(null);
   };
 
+  const handleRemoveContact = (index: number) => {
+    if (formData.contacts.length > 1) {
+      const updatedContacts = formData.contacts.filter(
+        (_: any, i: number) => i !== index
+      );
+      setFormData({
+        ...formData,
+        contacts: updatedContacts,
+      });
+    }
+  };
+  const handleView = (index: number) => {
+    setViewModalData(accounts[index]);
+    const viewModalElement = document.getElementById(
+      "viewModal"
+    ) as HTMLElement;
+    const viewModalInstance = new (window as any).bootstrap.Modal(
+      viewModalElement
+    );
+    viewModalInstance.show();
+  };
+  const handleExportPdf = () => {
+    exportToPdf("Account Report", headers, data, "account.pdf");
+  };
+
+  // Export to CSV handler
+  const handleExportCsv = () => {
+    exportToCsv(headers, data, "account.csv");
+  };
   return (
     <>
       <OutletHeader
         header={"Accounts"}
         showButton={true}
         onAddClick={handleAddClick}
+        onExportPdf={handleExportPdf}
+        onExportCsv={handleExportCsv}
       />
       <div className="table-responsive">
         <table className="table table-striped table-sm">
@@ -192,6 +254,13 @@ const Accounts = () => {
                   >
                     Delete
                   </button>
+                  <button
+                    type="button"
+                    className="btn btn-success"
+                    onClick={() => handleView(index)}
+                  >
+                    View
+                  </button>
                 </td>
               </tr>
             ))}
@@ -208,8 +277,14 @@ const Accounts = () => {
             formData={formData}
             handleChange={handleChange}
             handleAddContact={handleAddContact}
+            handleRemoveContact={handleRemoveContact}
           />
         }
+      />
+      <ViewModal
+        data={viewModalData}
+        modalId="viewModal"
+        title="View Order Details"
       />
     </>
   );
