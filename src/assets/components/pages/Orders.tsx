@@ -5,6 +5,8 @@ import OrderForm from "../Forms/OrderForm";
 import ViewModal from "../layout/ViewModal";
 import exportToPdf from "../export/exportToPdf";
 import exportToCsv from "../export/exportToCsv";
+import { useSelector } from "react-redux";
+import { RootState } from "../typescript/store";
 // import { useOutletContext } from "react-router-dom";
 
 interface Orders {
@@ -64,15 +66,14 @@ const Orders: React.FC = () => {
     modalInstance.show();
   };
 
-//using useOutletContext
+  //using useOutletContext
   // const { searchTerm } = useOutletContext<{ searchTerm: string }>();
 
   // const filteredOrders = orders.filter((order) =>
   //   Object.values(order).some((val) =>
-  //     val.toLowerCase().includes(searchTerm.toLowerCase())
+  //     val.toLowerCase().includes(search.toLowerCase())
   //   )
   // );
-
 
   //  Add or Update order logic
   const handleSubmit = () => {
@@ -129,6 +130,13 @@ const Orders: React.FC = () => {
   const handleExportCsv = () => {
     exportToCsv(headers, data, "orders.csv");
   };
+  const searchTerm = useSelector((state: RootState) =>
+    state.search.searchTerm.toLowerCase()
+  );
+
+  const filteredOrders = orders.filter((order) =>
+    Object.values(order).some((val) => val.toLowerCase().includes(searchTerm))
+  );
   return (
     <>
       <OutletHeader
@@ -152,7 +160,7 @@ const Orders: React.FC = () => {
             </tr>
           </thead>
           <tbody>
-            {orders.map((order, index) => (
+            {filteredOrders.map((order, index) => (
               <tr key={index}>
                 <td>{order.order_id}</td>
                 <td>{order.customer_name}</td>
@@ -162,21 +170,18 @@ const Orders: React.FC = () => {
                 <td>{order.order_date}</td>
                 <td>
                   <button
-                    type="button"
                     className="btn btn-warning"
                     onClick={() => handleEdit(index)}
                   >
                     Edit
                   </button>
                   <button
-                    type="button"
                     className="btn btn-info"
                     onClick={() => handleDelete(index)}
                   >
                     Delete
                   </button>
                   <button
-                    type="button"
                     className="btn btn-success"
                     onClick={() => handleView(index)}
                   >
@@ -184,7 +189,7 @@ const Orders: React.FC = () => {
                   </button>
                 </td>
               </tr>
-            ))}
+            ))}{" "}
           </tbody>
         </table>
       </div>

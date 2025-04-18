@@ -2,8 +2,19 @@ import { Link } from "react-router-dom";
 // interface HeaderProps {
 //   searchValue: string;
 //   onSearchChange: (value: string) => void;
-// }  
+// }
+import { useDispatch, useSelector } from "react-redux";
+import { setSearchTerm } from "../typescript/searchSlice";
+import { RootState } from "../typescript/store";
 const Header = () => {
+  const dispatch = useDispatch();
+  const searchValue = useSelector(
+    (state: RootState) => state.search.searchTerm
+  );
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(setSearchTerm(e.target.value));
+  };
   return (
     <header className="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
       <Link className="navbar-brand col-md-3 col-lg-2 me-0 px-3" to="/">
@@ -25,6 +36,9 @@ const Header = () => {
         type="text"
         placeholder="Search"
         aria-label="Search"
+        value={searchValue}
+        onChange={handleSearchChange}
+
         // value={searchValue}
         // onChange={(e) => onSearchChange(e.target.value)}
       />

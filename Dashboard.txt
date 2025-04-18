@@ -7,8 +7,8 @@ Order
 	-Display 				done (26/03/2025)
 	-Pagination	
 	-Find
-	-Export to csv or excel or pdf
-	-View Order
+	-Export to csv or excel or pdf		done (14/04/2025)
+	-View Order				done (14/04/2025)
 	-Edit Validation
 	-Add Validation 
 Product 
@@ -21,8 +21,8 @@ Product
 	-Add Category ID and Bind
 	-Pagination
 	-Find
-	-Export to csv or excel or pdf
-	-View Product
+	-Export to csv or excel or pdf 		done (14/04/2025)
+	-View Product				done (14/04/2025)
 	-Edit Validation
 	-Add Validation 	
 	
